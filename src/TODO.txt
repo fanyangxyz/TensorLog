@@ -1,4 +1,4 @@
-Minibatch computation:
+Minibatch computation - this turns out to be a mess with theano's limited abilities to handle sparse matrices
  - ComponentwiseVecMulOp and WeightedVec are difficulties
  -- ComponentwiseVecMulOp occurs ONLY when we multiply messages for a variable in BP
  -- WeightedVec occurs ONLY when we multiply all the messages at the 'top level' in BP
