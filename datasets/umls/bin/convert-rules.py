@@ -61,11 +61,13 @@ def cvtRules(fIn,fOut,rIdOut):
     rn = 0
     fp = open(fOut,'w')
     fp2 = open(rIdOut,'w')
-    #regex = re.compile('^(\w+)\((\w+),(.*)')
-    regex = re.compile( '^(\w+)\((\w+(?:(-\w+)|\w+)),(.*)')
-    def fixLit(lit):
+    regexNoHyphen = re.compile('^(\w+)\((\w+),(.*)')
+    regexHyphen = re.compile('^(\w+)\((\w+(?:-\w+)),(.*)')
+    def fixLit(lit, regex):
         m = regex.match(lit) 
         return '%s(%s' % (m.group(2),m.group(3))
+    fixLitNoHyphen = lambda x: fixLit(x, regexNoHyphen)
+    fixLitHyphen = lambda x: fixLit(x, regexHyphen)
 
     for rel in ALLRELS:
         fp.write('i_%s(X,Y) :- %s(X,Y) {i_%s}.\n' % (rel,rel,rel)) 
@@ -74,16 +76,28 @@ def cvtRules(fIn,fOut,rIdOut):
     for line in open(fIn):
         rn += 1
         if not line.startswith("#") and not line.startswith("interp(P") and not line.startswith("learnedPred(P") and line.strip():
+            head,bodyFeat = line.strip().split(" :- ")
+            body,feat0 = bodyFeat.split(" {")
+            bodyLits = body.split(", ")
             try:
-                head,bodyFeat = line.strip().split(" :- ")
-                body,feat0 = bodyFeat.split(" {")
-                bodyLits = body.split(", ")
-                fp.write(fixLit(head))
+                try:
+                    fp.write(fixLitNoHyphen(head))
+                except:
+                    fp.write(fixLitHyphen(head))
                 fp.write(' :- ')
-                fp.write(", ".join(map(fixLit,bodyLits)))
-                fp.write(' {r%d}.\n' % rn)
-                fp2.write('rule\tr%d\n' % rn)
+                tmp = []
+                for body in bodyLits:
+                    try:
+                        tmp.append(fixLitNoHyphen(body))
+                    except:
+                        tmp.append(fixLitHyphen(body))
+                fp.write(", ".join(tmp))
             except:
-                print(bodyLits)
+                print("="*30 + "Reg Exp error" + "="*30)
+                
+            fp.write(' {r%d}.\n' % rn)
+            fp2.write('rule\tr%d\n' % rn)
+
+
 if __name__ == "__main__":
     cvtRules('raw/train-learned.ppr','inputs/umls-learned.ppr', 'inputs/umls-ruleids.cfacts')
