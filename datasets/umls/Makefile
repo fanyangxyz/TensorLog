@@ -2,7 +2,7 @@
 
 #expt: expt.log eval.log
 
-expt.log: inputs/cfacts inputs/learned.ppr inputs/examples
+expt.log: 
 	python umls-expt.py > expt.log
 
 #eval.log: expt.log
@@ -10,13 +10,17 @@ expt.log: inputs/cfacts inputs/learned.ppr inputs/examples
 
 # prepare for running expt
 
-setup: inputs tmp-cache inputs/cfacts inputs/learned.ppr inputs/examples
+setup: inputs tmp-cache inputs/cfacts inputs/learned.ppr inputs/examples hack
 
 inputs:
 	mkdir $@
 
 tmp-cache:
 	mkdir $@
+
+hack:
+	cat inputs/hack.txt inputs/umls.cfacts > inputs/umls-hacked.cfacts
+	mv inputs/umls-hacked.cfacts inputs/umls.cfacts
 
 inputs/examples:
 	python bin/convert-examples.py
