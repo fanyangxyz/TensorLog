@@ -5,8 +5,8 @@
 expt.log: 
 	python umls-expt.py > expt.log
 
-#eval.log: expt.log
-#	proppr eval tmp-cache/wnet-test.examples tmp-cache/hypernym-test.solutions.txt --metric auc --defaultNeg > eval.log
+eval.log: 
+	proppr eval tmp-cache/umls-test.examples tmp-cache/affects-test.solutions.txt --metric auc --defaultNeg > eval.log
 
 # prepare for running expt
 
