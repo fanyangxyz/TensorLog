@@ -1,0 +1,185 @@
+# 'adapter' which can be added to a bunch of mutuallly recursive
+# learnedPred rules
+
+interp(P,X,Y) :- learnedPred(P,X,Y) {fixedWeight}. 
+learnedPred(P,X,Y) :- rel(P,X,Y) {fixedWeight}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Y) {lr_if(i_affects,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(interacts_with,Z,Y) {lr_chain(i_affects,process_of,interacts_with)}.
+learnedPred(i_affects,X,Y) :- rel(interacts_with,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,interacts_with,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,causes,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Y) {lr_if(i_affects,causes)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,Y,X) {lr_ifInv(i_affects,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Y) {lr_if(i_affects,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Y) {lr_if(i_affects,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(interacts_with,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,interacts_with,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,causes,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(produces,Y,X) {lr_ifInv(i_affects,produces)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,causes,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,Y,X) {lr_ifInv(i_affects,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(interacts_with,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,interacts_with,causes)}.
+learnedPred(i_affects,X,Y) :- rel(part_of,X,Y) {lr_if(i_affects,part_of)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,result_of,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(isa,Z,Y) {lr_chain(i_affects,process_of,isa)}.
+learnedPred(i_affects,X,Y) :- rel(manifestation_of,X,Y) {lr_if(i_affects,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Y) {lr_if(i_affects,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(causes,Y,X) {lr_ifInv(i_affects,causes)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,isa,causes)}.
+learnedPred(i_affects,X,Y) :- rel(manifestation_of,Y,X) {lr_ifInv(i_affects,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Y) {lr_if(i_affects,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(part_of,X,Z), rel(interacts_with,Z,Y) {lr_chain(i_affects,part_of,interacts_with)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,complicates,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Y) {lr_if(i_affects,measures)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,complicates,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(isa,Z,Y) {lr_chain(i_affects,causes,isa)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,result_of,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,process_of,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Y) {lr_if(i_affects,isa)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,disrupts,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(precedes,X,Y) {lr_if(i_affects,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,associated_with,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(ingredient_of,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,ingredient_of,causes)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Y) {lr_if(i_affects,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,isa,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(precedes,Y,X) {lr_ifInv(i_affects,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(assesses_effect_of,X,Y) {lr_if(i_affects,assesses_effect_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,process_of,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(isa,Y,X) {lr_ifInv(i_affects,isa)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,causes,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(interacts_with,Z,Y) {lr_chain(i_affects,location_of,interacts_with)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,associated_with,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,disrupts,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,disrupts,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(produces,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,produces,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,causes,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(measurement_of,Y,X) {lr_ifInv(i_affects,measurement_of)}.
+learnedPred(i_affects,X,Y) :- rel(part_of,X,Z), rel(isa,Z,Y) {lr_chain(i_affects,part_of,isa)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,process_of,causes)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,causes,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(uses,Y,X) {lr_ifInv(i_affects,uses)}.
+learnedPred(i_affects,X,Y) :- rel(diagnoses,X,Y) {lr_if(i_affects,diagnoses)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Y) {lr_if(i_affects,treats)}.
+learnedPred(i_affects,X,Y) :- rel(co-occurs_with,Y,X) {lr_ifInv(i_affects,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(co-occurs_with,X,Y) {lr_if(i_affects,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,causes,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,complicates,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(prevents,X,Y) {lr_if(i_affects,prevents)}.
+learnedPred(i_affects,X,Y) :- rel(degree_of,X,Y) {lr_if(i_affects,degree_of)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(degree_of,Z,Y) {lr_chain(i_affects,causes,degree_of)}.
+learnedPred(i_affects,X,Y) :- rel(produces,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,produces,causes)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(part_of,Z,Y) {lr_chain(i_affects,isa,part_of)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,location_of,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(isa,Z,Y) {lr_chain(i_affects,complicates,isa)}.
+learnedPred(i_affects,X,Y) :- rel(produces,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,produces,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(degree_of,Y,X) {lr_ifInv(i_affects,degree_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(exhibits,Z,Y) {lr_chain(i_affects,process_of,exhibits)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,complicates,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,associated_with,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(associated_with,Z,Y) {lr_chain(i_affects,result_of,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,isa,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,location_of,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,measures,causes)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,disrupts,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(indicates,X,Y) {lr_if(i_affects,indicates)}.
+learnedPred(i_affects,X,Y) :- rel(analyzes,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,analyzes,causes)}.
+learnedPred(i_affects,X,Y) :- rel(assesses_effect_of,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,assesses_effect_of,causes)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,result_of,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Z), rel(isa,Z,Y) {lr_chain(i_affects,disrupts,isa)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,measures,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(associated_with,Z,Y) {lr_chain(i_affects,causes,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(performs,Z,Y) {lr_chain(i_affects,associated_with,performs)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(co-occurs_with,Z,Y) {lr_chain(i_affects,causes,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(interacts_with,X,Z), rel(indicates,Z,Y) {lr_chain(i_affects,interacts_with,indicates)}.
+learnedPred(i_affects,X,Y) :- rel(occurs_in,Y,X) {lr_ifInv(i_affects,occurs_in)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(exhibits,Z,Y) {lr_chain(i_affects,associated_with,exhibits)}.
+learnedPred(i_affects,X,Y) :- rel(produces,X,Z), rel(associated_with,Z,Y) {lr_chain(i_affects,produces,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,associated_with,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(co-occurs_with,Z,Y) {lr_chain(i_affects,complicates,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(interacts_with,X,Z), rel(prevents,Z,Y) {lr_chain(i_affects,interacts_with,prevents)}.
+learnedPred(i_affects,X,Y) :- rel(interacts_with,X,Z), rel(treats,Z,Y) {lr_chain(i_affects,interacts_with,treats)}.
+learnedPred(i_affects,X,Y) :- rel(occurs_in,X,Y) {lr_if(i_affects,occurs_in)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,treats,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(interacts_with,X,Z), rel(diagnoses,Z,Y) {lr_chain(i_affects,interacts_with,diagnoses)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(occurs_in,Z,Y) {lr_chain(i_affects,causes,occurs_in)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,treats,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(performs,Y,X) {lr_ifInv(i_affects,performs)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Z), rel(co-occurs_with,Z,Y) {lr_chain(i_affects,disrupts,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,isa,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(uses,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,uses,causes)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(measurement_of,Z,Y) {lr_chain(i_affects,measures,measurement_of)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,complicates,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,Y,X) {lr_ifInv(i_affects,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(associated_with,Z,Y) {lr_chain(i_affects,isa,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,associated_with,causes)}.
+learnedPred(i_affects,X,Y) :- rel(occurs_in,X,Z), rel(conceptual_part_of,Z,Y) {lr_chain(i_affects,occurs_in,conceptual_part_of)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,Y,X) {lr_ifInv(i_affects,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(conceptual_part_of,Z,Y) {lr_chain(i_affects,measures,conceptual_part_of)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,complicates,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(property_of,Z,Y) {lr_chain(i_affects,associated_with,property_of)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,isa,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,result_of,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,process_of,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,location_of,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,result_of,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(part_of,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,part_of,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,complicates,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,location_of,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,associated_with,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,isa,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(indicates,X,Z), rel(causes,Z,Y) {lr_chain(i_affects,indicates,causes)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,measures,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,associated_with,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,measures,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,measures,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,process_of,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(uses,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,uses,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,result_of,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(isa,Z,Y) {lr_chain(i_affects,location_of,isa)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,associated_with,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(manifestation_of,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,manifestation_of,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(co-occurs_with,Z,Y) {lr_chain(i_affects,process_of,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(conceptually_related_to,X,Z), rel(conceptual_part_of,Z,Y) {lr_chain(i_affects,conceptually_related_to,conceptual_part_of)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(degree_of,Z,Y) {lr_chain(i_affects,associated_with,degree_of)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Z), rel(evaluation_of,Z,Y) {lr_chain(i_affects,treats,evaluation_of)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(co-occurs_with,Z,Y) {lr_chain(i_affects,result_of,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(uses,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,uses,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(occurs_in,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,occurs_in,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(co-occurs_with,Z,Y) {lr_chain(i_affects,location_of,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,treats,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(disrupts,Z,Y) {lr_chain(i_affects,location_of,disrupts)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(occurs_in,Z,Y) {lr_chain(i_affects,associated_with,occurs_in)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,measures,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(conceptual_part_of,X,Z), rel(conceptual_part_of,Z,Y) {lr_chain(i_affects,conceptual_part_of,conceptual_part_of)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(measurement_of,Z,Y) {lr_chain(i_affects,associated_with,measurement_of)}.
+learnedPred(i_affects,X,Y) :- rel(complicates,X,Z), rel(degree_of,Z,Y) {lr_chain(i_affects,complicates,degree_of)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(associated_with,Z,Y) {lr_chain(i_affects,associated_with,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Z), rel(occurs_in,Z,Y) {lr_chain(i_affects,treats,occurs_in)}.
+learnedPred(i_affects,X,Y) :- rel(associated_with,X,Z), rel(co-occurs_with,Z,Y) {lr_chain(i_affects,associated_with,co-occurs_with)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,result_of,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,location_of,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(degree_of,Z,Y) {lr_chain(i_affects,process_of,degree_of)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(manifestation_of,Z,Y) {lr_chain(i_affects,isa,manifestation_of)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(isa,Z,Y) {lr_chain(i_affects,result_of,isa)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Z), rel(degree_of,Z,Y) {lr_chain(i_affects,disrupts,degree_of)}.
+learnedPred(i_affects,X,Y) :- rel(conceptually_related_to,X,Y) {lr_if(i_affects,conceptually_related_to)}.
+learnedPred(i_affects,X,Y) :- rel(uses,X,Z), rel(prevents,Z,Y) {lr_chain(i_affects,uses,prevents)}.
+learnedPred(i_affects,X,Y) :- rel(result_of,X,Z), rel(degree_of,Z,Y) {lr_chain(i_affects,result_of,degree_of)}.
+learnedPred(i_affects,X,Y) :- rel(measures,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,measures,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(carries_out,X,Z), rel(precedes,Z,Y) {lr_chain(i_affects,carries_out,precedes)}.
+learnedPred(i_affects,X,Y) :- rel(uses,X,Z), rel(treats,Z,Y) {lr_chain(i_affects,uses,treats)}.
+learnedPred(i_affects,X,Y) :- rel(disrupts,X,Z), rel(carries_out,Z,Y) {lr_chain(i_affects,disrupts,carries_out)}.
+learnedPred(i_affects,X,Y) :- rel(carries_out,X,Z), rel(process_of,Z,Y) {lr_chain(i_affects,carries_out,process_of)}.
+learnedPred(i_affects,X,Y) :- rel(conceptually_related_to,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,conceptually_related_to,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,process_of,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(carries_out,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,carries_out,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(location_of,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,location_of,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(conceptual_part_of,X,Z), rel(result_of,Z,Y) {lr_chain(i_affects,conceptual_part_of,result_of)}.
+learnedPred(i_affects,X,Y) :- rel(conceptually_related_to,Y,X) {lr_ifInv(i_affects,conceptually_related_to)}.
+learnedPred(i_affects,X,Y) :- rel(causes,X,Z), rel(conceptually_related_to,Z,Y) {lr_chain(i_affects,causes,conceptually_related_to)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Z), rel(location_of,Z,Y) {lr_chain(i_affects,treats,location_of)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Z), rel(associated_with,Z,Y) {lr_chain(i_affects,treats,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(treats,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,treats,complicates)}.
+learnedPred(i_affects,X,Y) :- rel(produces,X,Z), rel(indicates,Z,Y) {lr_chain(i_affects,produces,indicates)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(associated_with,Z,Y) {lr_chain(i_affects,process_of,associated_with)}.
+learnedPred(i_affects,X,Y) :- rel(process_of,X,Z), rel(occurs_in,Z,Y) {lr_chain(i_affects,process_of,occurs_in)}.
+learnedPred(i_affects,X,Y) :- rel(isa,X,Z), rel(measures,Z,Y) {lr_chain(i_affects,isa,measures)}.
+learnedPred(i_affects,X,Y) :- rel(method_of,X,Z), rel(complicates,Z,Y) {lr_chain(i_affects,method_of,complicates)}.
