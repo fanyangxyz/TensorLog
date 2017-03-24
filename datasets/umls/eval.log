@@ -1,0 +1,5 @@
+queries 42 answers 3578 labeled answers 3578
+==============================================================================
+metric auc (AUC): The probability of a positive example scoring higher than a negative example; or the area under the ROC curve
+. micro: 0.831236604897
+. macro: 0.525147062738
