@@ -19,8 +19,7 @@ tmp-cache:
 	mkdir $@
 
 hack:
-	cat inputs/hack.txt inputs/umls.cfacts > inputs/umls-hacked.cfacts
-	mv inputs/umls-hacked.cfacts inputs/umls.cfacts
+	cat inputs/hack.txt >> inputs/umls.cfacts
 
 inputs/examples:
 	python bin/convert-examples.py
