@@ -1,0 +1,52 @@
+Expt configuration: {'targetMode': 'i_affects/io', 'learner': <tensorlog.plearn.ParallelFixedRateGDLearner object at 0x2b9390867350>, 'savedTestExamples': 'tmp-cache/umls-test.examples', 'prog': <tensorlog.program.ProPPRProgram object at 0x2b93908e5610>, 'savedTestPredictions': 'tmp-cache/affects-test.solutions.txt', 'savedTrainExamples': 'tmp-cache/umls-train.examples', 'testData': <tensorlog.dataset.Dataset object at 0x2b939088c990>, 'trainData': <tensorlog.dataset.Dataset object at 0x2b939088c3d0>}
+running untrained theory on train data ...
+running untrained theory on train data ... done in 0.373 sec
+eval untrained theory on train : acc 0.0453539823009 xent/ex 26.393701604
+running untrained theory on test data ...
+running untrained theory on test data ... done in 0.284 sec
+eval untrained theory on test : acc 0.00934579439252 xent/ex 29.5025212653
+training ParallelFixedRateGDLearner ...
+epoch=1 maxEpoch=30 avg.crossEnt=2634.34 tot.crossEnt=23859.9 tot.loss=23882.5 avg.reg=2.26 min.time=0.616192 avg.time=0.72051 max.time=0.789231 tot.time=7.10495 tot.n=904 minibatches=10
+epoch=2 maxEpoch=30 avg.crossEnt=3283.77 tot.crossEnt=29798.7 tot.loss=29819.7 avg.reg=2.1019 min.time=0.613285 avg.time=0.767169 max.time=0.820199 tot.time=7.52396 tot.n=904 minibatches=10
+epoch=3 maxEpoch=30 avg.crossEnt=2926.19 tot.crossEnt=26583.5 tot.loss=26603.4 avg.reg=1.99158 min.time=0.61396 avg.time=0.767828 max.time=0.832272 tot.time=7.53056 tot.n=904 minibatches=10
+epoch=4 maxEpoch=30 avg.crossEnt=2849.1 tot.crossEnt=25969.2 tot.loss=25988.3 avg.reg=1.90857 min.time=0.674323 avg.time=0.740157 max.time=0.809553 tot.time=7.33837 tot.n=904 minibatches=10
+epoch=5 maxEpoch=30 avg.crossEnt=2460.53 tot.crossEnt=22398.9 tot.loss=22417.4 avg.reg=1.84468 min.time=0.621938 avg.time=0.796029 max.time=0.863659 tot.time=7.79316 tot.n=904 minibatches=10
+epoch=6 maxEpoch=30 avg.crossEnt=2098.39 tot.crossEnt=19039 tot.loss=19057 avg.reg=1.79599 min.time=0.66934 avg.time=0.784478 max.time=0.850591 tot.time=7.73424 tot.n=904 minibatches=10
+epoch=7 maxEpoch=30 avg.crossEnt=2077.92 tot.crossEnt=18890.3 tot.loss=18908.1 avg.reg=1.77205 min.time=0.699887 avg.time=0.814398 max.time=0.889212 tot.time=8.03405 tot.n=904 minibatches=10
+epoch=8 maxEpoch=30 avg.crossEnt=1766.86 tot.crossEnt=16020.8 tot.loss=16037.8 avg.reg=1.69816 min.time=0.713065 avg.time=0.791661 max.time=0.827679 tot.time=7.85449 tot.n=904 minibatches=10
+epoch=9 maxEpoch=30 avg.crossEnt=1794.39 tot.crossEnt=16378.1 tot.loss=16395.1 avg.reg=1.70046 min.time=0.70477 avg.time=0.749296 max.time=0.813987 tot.time=7.4541 tot.n=904 minibatches=10
+epoch=10 maxEpoch=30 avg.crossEnt=1537.66 tot.crossEnt=13939.7 tot.loss=13955.5 avg.reg=1.58132 min.time=0.66713 avg.time=0.773811 max.time=0.84103 tot.time=7.63569 tot.n=904 minibatches=10
+epoch=11 maxEpoch=30 avg.crossEnt=1451.22 tot.crossEnt=13147.4 tot.loss=13162.7 avg.reg=1.52793 min.time=0.601784 avg.time=0.742338 max.time=0.835726 tot.time=7.28845 tot.n=904 minibatches=10
+epoch=12 maxEpoch=30 avg.crossEnt=1380.33 tot.crossEnt=12545.6 tot.loss=12560.4 avg.reg=1.48385 min.time=0.616376 avg.time=0.730187 max.time=0.76906 tot.time=7.19261 tot.n=904 minibatches=10
+epoch=13 maxEpoch=30 avg.crossEnt=1300.14 tot.crossEnt=11784.9 tot.loss=11799.2 avg.reg=1.43701 min.time=0.662649 avg.time=0.765684 max.time=0.846342 tot.time=7.55793 tot.n=904 minibatches=10
+epoch=14 maxEpoch=30 avg.crossEnt=1235.63 tot.crossEnt=11231 tot.loss=11244.9 avg.reg=1.39319 min.time=0.635496 avg.time=0.749842 max.time=0.79216 tot.time=7.38865 tot.n=904 minibatches=10
+epoch=15 maxEpoch=30 avg.crossEnt=1195.12 tot.crossEnt=10829.9 tot.loss=10843.6 avg.reg=1.36427 min.time=0.603221 avg.time=0.761956 max.time=0.820379 tot.time=7.46718 tot.n=904 minibatches=10
+epoch=16 maxEpoch=30 avg.crossEnt=1127.97 tot.crossEnt=10216.4 tot.loss=10229.6 avg.reg=1.32102 min.time=0.668467 avg.time=0.801187 max.time=0.874643 tot.time=7.88446 tot.n=904 minibatches=10
+epoch=17 maxEpoch=30 avg.crossEnt=1072.79 tot.crossEnt=9713.28 tot.loss=9726.08 avg.reg=1.28036 min.time=0.646214 avg.time=0.756865 max.time=0.811427 tot.time=7.46242 tot.n=904 minibatches=10
+epoch=18 maxEpoch=30 avg.crossEnt=1069.12 tot.crossEnt=9681.03 tot.loss=9693.78 avg.reg=1.27759 min.time=0.648932 avg.time=0.750579 max.time=0.784872 tot.time=7.40821 tot.n=904 minibatches=10
+epoch=19 maxEpoch=30 avg.crossEnt=989.97 tot.crossEnt=8982.63 tot.loss=8994.83 avg.reg=1.2203 min.time=0.656725 avg.time=0.738526 max.time=0.806165 tot.time=7.30673 tot.n=904 minibatches=10
+epoch=20 maxEpoch=30 avg.crossEnt=943.066 tot.crossEnt=8566.76 tot.loss=8578.61 avg.reg=1.1847 min.time=0.709071 avg.time=0.775925 max.time=0.819608 tot.time=7.69507 tot.n=904 minibatches=10
+epoch=21 maxEpoch=30 avg.crossEnt=916.045 tot.crossEnt=8305.74 tot.loss=8317.34 avg.reg=1.16106 min.time=0.644745 avg.time=0.758739 max.time=0.799358 tot.time=7.47796 tot.n=904 minibatches=10
+epoch=22 maxEpoch=30 avg.crossEnt=866.999 tot.crossEnt=7869.36 tot.loss=7880.58 avg.reg=1.12186 min.time=0.596433 avg.time=0.7305 max.time=0.748814 tot.time=7.17629 tot.n=904 minibatches=10
+epoch=23 maxEpoch=30 avg.crossEnt=834.71 tot.crossEnt=7605.35 tot.loss=7616.32 avg.reg=1.09696 min.time=0.635719 avg.time=0.734735 max.time=0.771582 tot.time=7.25229 tot.n=904 minibatches=10
+epoch=24 maxEpoch=30 avg.crossEnt=811.999 tot.crossEnt=7369.16 tot.loss=7379.88 avg.reg=1.07292 min.time=0.641858 avg.time=0.761506 max.time=0.854763 tot.time=7.5002 tot.n=904 minibatches=10
+epoch=25 maxEpoch=30 avg.crossEnt=777.788 tot.crossEnt=7047.21 tot.loss=7057.62 avg.reg=1.04104 min.time=0.640449 avg.time=0.768685 max.time=0.841217 tot.time=7.56375 tot.n=904 minibatches=10
+epoch=26 maxEpoch=30 avg.crossEnt=761.883 tot.crossEnt=6914.79 tot.loss=6925.05 avg.reg=1.02735 min.time=0.645117 avg.time=0.769668 max.time=0.836814 tot.time=7.57711 tot.n=904 minibatches=10
+epoch=27 maxEpoch=30 avg.crossEnt=732.974 tot.crossEnt=6634.64 tot.loss=6644.66 avg.reg=0.997534 min.time=0.626891 avg.time=0.741546 max.time=0.779686 tot.time=7.30539 tot.n=904 minibatches=10
+epoch=28 maxEpoch=30 avg.crossEnt=702.517 tot.crossEnt=6367.87 tot.loss=6377.56 avg.reg=0.968738 min.time=0.609939 avg.time=0.715479 max.time=0.744464 tot.time=7.05347 tot.n=904 minibatches=10
+epoch=29 maxEpoch=30 avg.crossEnt=679.687 tot.crossEnt=6172.19 tot.loss=6181.67 avg.reg=0.946438 min.time=0.629195 avg.time=0.73421 max.time=0.853576 tot.time=7.24129 tot.n=904 minibatches=10
+epoch=30 maxEpoch=30 avg.crossEnt=664.78 tot.crossEnt=6026.9 tot.loss=6036.21 avg.reg=0.929582 min.time=0.671721 avg.time=0.762782 max.time=0.824318 tot.time=7.57347 tot.n=904 minibatches=10
+training ParallelFixedRateGDLearner ... done in 25.210 sec
+running trained theory on train data ...
+running trained theory on train data ... done in 0.251 sec
+running trained theory on test data ...
+running trained theory on test data ... done in 0.183 sec
+eval ..trained theory on train : acc 0.0553097345133 xent/ex 6.42947576742
+eval ..trained theory on test : acc 0.0373831775701 xent/ex 7.21338518089
+saving test predictions ...
+saving test predictions ... done in 0.062 sec
+saving test examples ...
+saving test examples ... done in 0.022 sec
+saving train examples ...
+saving train examples ... done in 0.184 sec
+ready for commands like: proppr eval tmp-cache/umls-test.examples tmp-cache/affects-test.solutions.txt --metric auc --defaultNeg
